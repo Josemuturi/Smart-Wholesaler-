@@ -1,0 +1,22 @@
+# Ignore everything at the root level
+/*
+
+# Do NOT ignore these specific configuration files, documents, and folders
+!.gitignore
+!README.md
+!weekly-submissions/
+
+# Exclude temporary files, logs, and database files inside any subdirectories
+**/__pycache__/
+**/*.py[cod]
+**/*.db
+**/*.log
+**/.env
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/.idea/
+**/.vscode/
+**/.qodo/
+**/*.docx
+**/generate_logbook.py
