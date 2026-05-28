@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--
+  Login.html — BIT3208 Week 2: Static Login Page Layout
+  ======================================================
+  This file shows the LAYOUT ONLY — no JavaScript logic yet.
+  Week 3 will convert this to Login.jsx with full validation and API calls.
+
+  To preview: open this file directly in a browser.
+  Styles come from ../design-system.css
+-->
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Smart Wholesaler (Week 2 Layout)</title>
+  <link rel="stylesheet" href="../design-system.css" />
+
+  <!-- Page-specific styles (will become Login.css in Week 3) -->
+  <style>
+    /* Full-screen centered page */
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-bg);
+      position: relative;
+      overflow: hidden;
+      padding: 1.5rem;
+    }
+
+    /* Decorative background blobs */
+    .login-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .login-blob--1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, #6c63ff 0%, transparent 70%);
+      top: -150px; left: -100px;
+    }
+    .login-blob--2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #00d2c6 0%, transparent 70%);
+      bottom: -100px; right: -80px;
+    }
+
+    /* Main card */
+    .login-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 440px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Brand section */
+    .login-brand { text-align: center; margin-bottom: 2rem; }
+    .login-brand__logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: var(--gradient-primary);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 8px 24px rgba(108, 99, 255, 0.4);
+    }
+    .login-brand__name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      margin: 0 0 0.25rem;
+    }
+    .login-brand__tagline {
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Form headings */
+    .login-form__heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin: 0 0 0.25rem;
+    }
+    .login-form__subheading {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin: 0 0 1.5rem;
+    }
+
+    /* Error banner (hidden by default — shown by JS in Week 3) */
+    .login-error {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      color: #f87171;
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.875rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      /* Hidden in static layout — Week 3 JS will toggle visibility */
+      display: none;
+    }
+
+    /* Footer */
+    .login-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Demo panel */
+    .demo-panel {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--color-border);
+      padding-top: 1.5rem;
+    }
+    .demo-panel__divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .demo-panel__divider::before,
+    .demo-panel__divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--color-border);
+    }
+    .demo-panel__buttons { display: flex; flex-direction: column; gap: 0.625rem; }
+    .demo-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+    }
+    .demo-btn--distributor {
+      background: linear-gradient(135deg, rgba(108,99,255,0.25), rgba(108,99,255,0.15));
+      border-color: rgba(108,99,255,0.4);
+    }
+    .demo-btn--retailer {
+      background: linear-gradient(135deg, rgba(0,210,198,0.2), rgba(0,210,198,0.1));
+      border-color: rgba(0,210,198,0.4);
+    }
+    .demo-btn span:last-child { display: flex; flex-direction: column; gap: 2px; }
+    .demo-btn strong { font-size: 0.9rem; font-weight: 700; color: #fff; }
+    .demo-btn small  { font-size: 0.72rem; opacity: 0.75; color: #fff; }
+    .demo-btn__icon  { font-size: 1.6rem; }
+    .demo-panel__note {
+      margin-top: 0.875rem;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+
+    /* Theme toggle */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 36px; height: 36px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      background: transparent;
+      font-size: 1.05rem;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      z-index: 100;
+    }
+
+    /* Week 2 note banner */
+    .week-note {
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.3);
+      color: #fcd34d;
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0.875rem;
+      font-size: 0.78rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-page">
+  <!-- Background blobs -->
+  <div class="login-blob login-blob--1" aria-hidden="true"></div>
+  <div class="login-blob login-blob--2" aria-hidden="true"></div>
+
+  <!-- Theme toggle (no logic yet — Week 3 adds JS) -->
+  <button class="theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+
+  <div class="login-card">
+    <!-- Week 2 development note -->
+    <div class="week-note">
+      📐 Week 2 — Static Layout Preview (no JS logic yet)
+    </div>
+
+    <!-- Brand header -->
+    <div class="login-brand">
+      <div class="login-brand__logo" aria-hidden="true">SW</div>
+      <h1 class="login-brand__name">Smart Wholesaler</h1>
+      <p class="login-brand__tagline">B2B Wholesale Supply Portal</p>
+    </div>
+
+    <!-- Form (no action yet — Week 3 adds JS) -->
+    <form class="login-form" novalidate>
+      <h2 class="login-form__heading">Sign In</h2>
+      <p class="login-form__subheading">Access your wholesale account</p>
+
+      <!-- Error banner (hidden — Week 3 JS toggles it) -->
+      <div class="login-error" role="alert" id="login-error">
+        <span>⚠</span>
+        <span id="login-error-text">Error message goes here</span>
+      </div>
+
+      <!-- Email field -->
+      <div class="form-group">
+        <label for="login-email" class="form-label">Business Email</label>
+        <input
+          id="login-email"
+          type="email"
+          class="form-input"
+          placeholder="you@company.com"
+          autocomplete="email"
+        />
+      </div>
+
+      <!-- Password field -->
+      <div class="form-group">
+        <div class="form-label-row">
+          <label for="login-password" class="form-label">Password</label>
+          <a href="/forgot-password" class="form-link">Forgot password?</a>
+        </div>
+        <div class="form-input-wrapper">
+          <input
+            id="login-password"
+            type="password"
+            class="form-input form-input--has-icon"
+            placeholder="••••••••"
+            autocomplete="current-password"
+          />
+          <!-- Toggle button — Week 3 adds JS to show/hide password -->
+          <button
+            type="button"
+            class="form-input__toggle"
+            id="toggle-password"
+            aria-label="Show password"
+          >👁</button>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <button
+        id="login-submit-btn"
+        type="submit"
+        class="btn btn--primary btn--full"
+      >
+        Sign In
+      </button>
+    </form>
+
+    <!-- Demo quick-login panel -->
+    <div class="demo-panel">
+      <div class="demo-panel__divider">
+        <span>or jump in with a demo account</span>
+      </div>
+      <div class="demo-panel__buttons">
+        <button id="demo-distributor-btn" class="demo-btn demo-btn--distributor" type="button">
+          <span class="demo-btn__icon" aria-hidden="true">🏭</span>
+          <span>
+            <strong>Distributor</strong>
+            <small>Alice Kamau · Admin view</small>
+          </span>
+        </button>
+        <button id="demo-retailer-btn" class="demo-btn demo-btn--retailer" type="button">
+          <span class="demo-btn__icon" aria-hidden="true">🏪</span>
+          <span>
+            <strong>Retailer</strong>
+            <small>Brian Otieno · Buyer view</small>
+          </span>
+        </button>
+      </div>
+      <p class="demo-panel__note">
+        🔒 JS logic added in Week 3 — see Login.jsx
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <p class="login-footer">
+      Don't have an account? <a href="/register" class="form-link">Request Access</a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
