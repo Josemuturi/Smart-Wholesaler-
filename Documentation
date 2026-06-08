@@ -1,6 +1,5 @@
 # Smart Wholesaler (Secure-Duka)
 
-**BIT3208 — Internet Programming | Group Project**
 
 A full-stack B2B wholesale supply portal that connects distributors and retailers. Built with **React + Vite** (frontend) and **FastAPI + SQLite** (backend), featuring JWT authentication, role-based dashboards, and a product catalog with cart functionality.
 
@@ -177,7 +176,7 @@ Application: [http://localhost:3003](http://localhost:3003)
 
 ---
 
-## 📅 Weekly Progress
+## Weekly Progress
 
 | Week | Deliverable                                                         | Commit Message                                                          |
 |------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
