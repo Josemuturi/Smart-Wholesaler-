@@ -1,4 +1,4 @@
-# 🏪 Smart Wholesaler (Secure-Duka)
+# Smart Wholesaler (Secure-Duka)
 
 **BIT3208 — Internet Programming | Group Project**
 
@@ -6,7 +6,7 @@ A full-stack B2B wholesale supply portal that connects distributors and retailer
 
 ---
 
-## 📑 Table of Contents
+##  Table of Contents
 
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
@@ -22,7 +22,7 @@ A full-stack B2B wholesale supply portal that connects distributors and retailer
 
 ---
 
-## ✨ Features
+##  Features
 
 - **User Authentication** — Secure login and registration with JWT tokens and bcrypt password hashing
 - **Role-Based Dashboards** — Separate interfaces for distributors and retailers
@@ -36,7 +36,7 @@ A full-stack B2B wholesale supply portal that connects distributors and retailer
 
 ---
 
-## 📦 Tech Stack
+##  Tech Stack
 
 | Layer        | Technology                                    |
 |--------------|-----------------------------------------------|
@@ -49,7 +49,7 @@ A full-stack B2B wholesale supply portal that connects distributors and retailer
 
 ---
 
-## 📁 File Structure
+##  File Structure
 
 ```
 Smart-Wholesaler/
@@ -134,7 +134,7 @@ Make sure you have the following installed on your machine:
 
 ---
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 ### 1. Clone the repository
 
@@ -166,7 +166,7 @@ Application: [http://localhost:3003](http://localhost:3003)
 
 ---
 
-## 🔑 Demo Credentials
+##  Demo Credentials
 
 | Role          | Email                           | Password      |
 |---------------|---------------------------------|---------------|
@@ -189,7 +189,7 @@ Application: [http://localhost:3003](http://localhost:3003)
 
 ---
 
-## 🔗 API Endpoints
+##  API Endpoints
 
 ### Authentication
 
@@ -220,13 +220,13 @@ Application: [http://localhost:3003](http://localhost:3003)
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 > Screenshots of the application will be added here.
 
 ---
 
-## 👥 Team Members
+##  Team Members
 
 | Name           | Role              |
 |----------------|--------------------|
@@ -234,7 +234,7 @@ Application: [http://localhost:3003](http://localhost:3003)
 
 ---
 
-## 📄 License
+##  License
 
 This project was developed as part of the **BIT3208 Internet Programming** course. It is intended for academic purposes only.
 
