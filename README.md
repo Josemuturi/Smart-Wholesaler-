@@ -1,0 +1,243 @@
+# 🏪 Smart Wholesaler (Secure-Duka)
+
+**BIT3208 — Internet Programming | Group Project**
+
+A full-stack B2B wholesale supply portal that connects distributors and retailers. Built with **React + Vite** (frontend) and **FastAPI + SQLite** (backend), featuring JWT authentication, role-based dashboards, and a product catalog with cart functionality.
+
+---
+
+## 📑 Table of Contents
+
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [File Structure](#-file-structure)
+- [Prerequisites](#-prerequisites)
+- [Installation & Setup](#-installation--setup)
+- [Demo Credentials](#-demo-credentials)
+- [Weekly Progress](#-weekly-progress)
+- [API Endpoints](#-api-endpoints)
+- [Screenshots](#-screenshots)
+- [Team Members](#-team-members)
+- [License](#-license)
+
+---
+
+## ✨ Features
+
+- **User Authentication** — Secure login and registration with JWT tokens and bcrypt password hashing
+- **Role-Based Dashboards** — Separate interfaces for distributors and retailers
+- **Product Catalog** — Browse, search, and filter wholesale products
+- **Shopping Cart** — Add, update, and remove items from cart
+- **Dark / Light Theme** — Toggle between dark and light modes
+- **Form Validation** — Client-side validation with real-time feedback
+- **Password Visibility Toggle** — Show/hide password on login and registration forms
+- **Responsive Design** — Works on desktop, tablet, and mobile screens
+- **Protected Routes** — Auth-guarded pages that redirect unauthenticated users
+
+---
+
+## 📦 Tech Stack
+
+| Layer        | Technology                                    |
+|--------------|-----------------------------------------------|
+| **Frontend** | React 19, React Router 7, Vite 8              |
+| **Backend**  | FastAPI, Uvicorn, SQLAlchemy                   |
+| **Auth**     | JWT (python-jose), bcrypt (passlib)            |
+| **Database** | SQLite (development) / PostgreSQL (production) |
+| **Styling**  | Vanilla CSS with CSS custom properties         |
+| **HTTP**     | Axios with JWT interceptor                     |
+
+---
+
+## 📁 File Structure
+
+```
+Smart-Wholesaler/
+│
+├── .gitignore                        # Git ignore rules
+├── index.html                        # Vite entry HTML
+├── package.json                      # Frontend dependencies & scripts
+├── vite.config.js                    # Vite configuration
+├── eslint.config.js                  # ESLint rules
+├── generate_logbook.py               # Auto-generates the BIT3208 logbook (.docx)
+├── Smart_Wholesaler_BIT3208_Logbook.docx  # BIT3208 course logbook
+│
+├── backend/                          # ── FastAPI Python Backend ──
+│   ├── main.py                       # App entry point, CORS, router mounts
+│   ├── auth.py                       # JWT token creation & verification helpers
+│   ├── database.py                   # SQLAlchemy engine & session setup
+│   ├── models.py                     # ORM models (User, Product, Order, Cart)
+│   ├── schemas.py                    # Pydantic request/response schemas
+│   ├── seed.py                       # Seeds demo users & products into DB
+│   ├── requirements.txt              # Python dependencies
+│   └── routers/
+│       ├── __init__.py
+│       ├── auth.py                   # /auth/register, /auth/login endpoints
+│       ├── products.py               # /products CRUD endpoints
+│       └── cart.py                    # /cart add, view, remove endpoints
+│
+├── src/                              # ── React Frontend Source ──
+│   ├── main.jsx                      # React DOM entry point
+│   ├── App.jsx                       # Root component & client-side routes
+│   ├── index.css                     # Global design system & theme variables
+│   ├── assets/                       # Static images & icons
+│   │   ├── hero.png
+│   │   └── vite.svg
+│   ├── components/
+│   │   └── ProtectedRoute.jsx        # Auth guard for private routes
+│   ├── context/
+│   │   ├── AuthContext.jsx           # Auth state (login, logout, token)
+│   │   └── ThemeContext.jsx          # Dark / light theme toggle
+│   ├── pages/
+│   │   ├── Login.jsx                 # Login & register page
+│   │   ├── Login.css
+│   │   ├── Dashboard.jsx             # Distributor / retailer dashboard
+│   │   ├── Dashboard.css
+│   │   ├── ProductCatalog.jsx        # Browse & add-to-cart product listing
+│   │   └── ProductCatalog.css
+│   └── utils/
+│       └── api.js                    # Axios instance with JWT interceptor
+│
+├── public/                           # Vite public assets
+│   ├── favicon.svg
+│   └── icons.svg
+│
+└── weekly-submissions/               # ── Weekly Deliverables for BIT3208 ──
+    ├── week1/                        # Vite + React scaffold, Hello World, DB test
+    │   ├── README.md
+    │   ├── db_connection_test.py
+    │   ├── index.html
+    │   ├── package.json
+    │   ├── vite.config.js
+    │   └── src/
+    ├── week2/                        # Design system CSS, wireframe notes
+    │   ├── README.md
+    │   ├── wireframe-notes.md
+    │   └── src/
+    ├── week3/                        # Form validation, AuthContext, api.js
+    │   ├── README.md
+    │   └── src/
+    └── week5/
+        └── schema.sql               # PostgreSQL schema — all 5 tables + seed data
+```
+
+---
+
+## 🛠 Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- **Node.js** (v18 or later) — [Download](https://nodejs.org/)
+- **Python** (v3.10 or later) — [Download](https://python.org/)
+- **pip** — Comes with Python
+- **Git** — [Download](https://git-scm.com/)
+
+---
+
+## 🚀 Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Josemuturi/Smart-Wholesaler-.git
+cd Smart-Wholesaler-
+```
+
+### 2. Set up the Backend (FastAPI)
+
+```bash
+cd backend
+pip install -r requirements.txt
+python seed.py                # Seed demo users & products
+python -m uvicorn main:app --reload --port 8004
+```
+
+API documentation: [http://localhost:8004/docs](http://localhost:8004/docs)
+
+### 3. Set up the Frontend (React + Vite)
+
+```bash
+# From the project root
+npm install
+npm run dev
+```
+
+Application: [http://localhost:3003](http://localhost:3003)
+
+---
+
+## 🔑 Demo Credentials
+
+| Role          | Email                           | Password      |
+|---------------|---------------------------------|---------------|
+| Distributor   | admin@smartwholesaler.com       | admin123      |
+| Retailer      | retailer@smartwholesaler.com    | retailer123   |
+
+> **Note:** Run `python backend/seed.py` to seed the SQLite database with these accounts and 8 sample products.
+
+---
+
+## 📅 Weekly Progress
+
+| Week | Deliverable                                                         | Commit Message                                                          |
+|------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| 1    | Vite + React scaffold, Hello World page, DB connection test         | `Week 1: Vite+React scaffold, Hello World page, DB connection test`     |
+| 2    | Design system CSS, wireframe notes, static Login page layout        | `Week 2: Design system CSS, wireframe notes, static Login page layout`  |
+| 3    | Form validation, password toggle, api.js utility, AuthContext       | `Week 3: Form validation, password toggle, api.js utility, AuthContext` |
+| 4    | Dashboard UI, Product Catalog, dark/light theme toggle              | `Week 4: Dashboard UI, Product Catalog, dark/light theme toggle`        |
+| 5    | FastAPI backend, SQLite DB, JWT auth, PostgreSQL schema             | `Week 5: FastAPI backend, SQLite database, JWT auth, PostgreSQL schema` |
+
+---
+
+## 🔗 API Endpoints
+
+### Authentication
+
+| Method | Endpoint          | Description                    |
+|--------|-------------------|--------------------------------|
+| POST   | `/auth/register`  | Register a new user            |
+| POST   | `/auth/login`     | Login and receive a JWT token  |
+
+### Products
+
+| Method | Endpoint          | Description                    |
+|--------|-------------------|--------------------------------|
+| GET    | `/products`       | List all products              |
+| GET    | `/products/{id}`  | Get a single product           |
+| POST   | `/products`       | Create a new product           |
+| PUT    | `/products/{id}`  | Update a product               |
+| DELETE | `/products/{id}`  | Delete a product               |
+
+### Cart
+
+| Method | Endpoint          | Description                    |
+|--------|-------------------|--------------------------------|
+| GET    | `/cart`           | View current user's cart       |
+| POST   | `/cart`           | Add item to cart               |
+| DELETE  | `/cart/{id}`     | Remove item from cart          |
+
+> All `/products` and `/cart` endpoints require a valid JWT token in the `Authorization: Bearer <token>` header.
+
+---
+
+## 📸 Screenshots
+
+> Screenshots of the application will be added here.
+
+---
+
+## 👥 Team Members
+
+| Name           | Role              |
+|----------------|--------------------|
+| Jose Muturi    | Lead Developer     |
+
+---
+
+## 📄 License
+
+This project was developed as part of the **BIT3208 Internet Programming** course. It is intended for academic purposes only.
+
+---
+
+**GitHub Repository:** [https://github.com/Josemuturi/Smart-Wholesaler-](https://github.com/Josemuturi/Smart-Wholesaler-)
