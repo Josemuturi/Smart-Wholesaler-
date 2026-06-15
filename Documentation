@@ -185,6 +185,8 @@ Application: [http://localhost:3003](http://localhost:3003)
 | 3    | Form validation, password toggle, api.js utility, AuthContext       | `Week 3: Form validation, password toggle, api.js utility, AuthContext` |
 | 4    | Dashboard UI, Product Catalog, dark/light theme toggle              | `Week 4: Dashboard UI, Product Catalog, dark/light theme toggle`        |
 | 5    | FastAPI backend, SQLite DB, JWT auth, PostgreSQL schema             | `Week 5: FastAPI backend, SQLite database, JWT auth, PostgreSQL schema` |
+| 6    | Database connection, product CRUD operations, prepared statements   | `Week 6: Database connection, product CRUD operations, prepared statements` |
+| 7    | User authentication, session management, password hashing           | `Week 7: User authentication, session management, password hashing`     |
 
 ---
 
